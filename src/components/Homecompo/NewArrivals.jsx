@@ -1,12 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight, Heart, ShoppingBag, Eye, Star, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { Heart, ShoppingBag, Eye, Star, Zap } from 'lucide-react';
 
 const NewArrivals = () => {
-  const [isHovering, setIsHovering] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const sliderRef = useRef(null);
-  const autoSlideRef = useRef(null);
-  
   // Your brand colors
   const fabuniqoGold = "rgb(209,167,67)";
 
@@ -22,6 +17,8 @@ const NewArrivals = () => {
     { id: 8, title: "Sunglasses", category: "Accessories", price: 179.99, discount: 22, rating: 4.7, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=300&auto=format&fit=crop" },
     { id: 9, title: "Cashmere Sweater", category: "Women", price: 199.99, discount: 20, rating: 4.8, image: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=300&auto=format&fit=crop" },
     { id: 10, title: "Leather Wallet", category: "Accessories", price: 89.99, discount: 15, rating: 4.6, image: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=300&auto=format&fit=crop" },
+    { id: 11, title: "Casual Shirt", category: "Men", price: 129.99, discount: 18, rating: 4.4, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&auto=format&fit=crop" },
+    { id: 12, title: "Summer Dress", category: "Women", price: 179.99, discount: 23, rating: 4.7, image: "https://images.unsplash.com/photo-1569317002804-ab77bcf1bce4?w=300&auto=format&fit=crop" },
   ];
 
   // Format price
@@ -29,58 +26,14 @@ const NewArrivals = () => {
     return `$${price.toFixed(2)}`;
   };
 
-  // Auto slide effect - infinite scroll
-  useEffect(() => {
-    if (!isHovering && !isAnimating && sliderRef.current) {
-      autoSlideRef.current = setInterval(() => {
-        setIsAnimating(true);
-        
-        const scrollAmount = 280; // Card width + gap
-        const maxScroll = sliderRef.current.scrollWidth - sliderRef.current.clientWidth;
-        
-        if (sliderRef.current.scrollLeft >= maxScroll - 10) {
-          // Reset to start for infinite effect
-          sliderRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-        
-        setTimeout(() => setIsAnimating(false), 800);
-      }, 3000);
-    }
-
-    return () => {
-      if (autoSlideRef.current) {
-        clearInterval(autoSlideRef.current);
-      }
-    };
-  }, [isHovering, isAnimating]);
-
-  // Manual navigation
-  const scrollLeft = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    const scrollAmount = 280;
-    sliderRef.current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    setTimeout(() => setIsAnimating(false), 800);
-  };
-
-  const scrollRight = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    const scrollAmount = 280;
-    sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    setTimeout(() => setIsAnimating(false), 800);
-  };
-
   return (
-    <section className="relative py-16 bg-white">
+    <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[rgb(209,167,67)]/10 to-transparent rounded-full border border-[rgb(209,167,67)]/20 mb-4">
             <Zap className="w-4 h-4 text-[rgb(209,167,67)] animate-pulse" />
-            <span className="font-poppins text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
+            <span className="font-Noto text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
               NEW ARRIVALS
             </span>
           </div>
@@ -89,136 +42,109 @@ const NewArrivals = () => {
             Latest <span style={{ color: fabuniqoGold }}>Collections</span>
           </h2>
           
-          <p className="font-poppins text-sm text-gray-600">
-            Fresh styles just added • Auto-scrolling
+          <p className="font-Noto text-sm text-gray-600">
+            Fresh styles just added to our collection
           </p>
         </div>
 
-        {/* Slider Container */}
-        <div 
-          className="relative"
-          onMouseEnter={() => setIsHovering(true)}
-          onMouseLeave={() => setIsHovering(false)}
-        >
-          {/* Navigation Buttons */}
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-8 h-8 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 hover:scale-110 transition-all duration-200 disabled:opacity-50"
-            disabled={isAnimating}
-          >
-            <ChevronLeft className="w-4 h-4 text-gray-600" />
-          </button>
+        {/* Grid Layout - Like Amazon/Flipkart */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {newArrivals.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-gray-200 group"
+            >
+              {/* Product Image */}
+              <div className="relative aspect-square overflow-hidden bg-gray-50">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                
+                {/* Discount Badge */}
+                {product.discount && (
+                  <div className="absolute top-3 left-3">
+                    <span 
+                      className="px-3 py-1 text-xs font-Noto font-bold text-white rounded"
+                      style={{ backgroundColor: fabuniqoGold }}
+                    >
+                      -{product.discount}%
+                    </span>
+                  </div>
+                )}
+                
+                {/* Quick Actions */}
+                <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <button 
+                    className="p-2 bg-white rounded-full hover:bg-[rgb(209,167,67)] hover:text-white transition-colors duration-200 shadow-sm"
+                    aria-label="Add to wishlist"
+                  >
+                    <Heart className="w-3 h-3" />
+                  </button>
+                  <button 
+                    className="p-2 bg-white rounded-full hover:bg-[rgb(209,167,67)] hover:text-white transition-colors duration-200 shadow-sm"
+                    aria-label="Quick view"
+                  >
+                    <Eye className="w-3 h-3" />
+                  </button>
+                </div>
 
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-8 h-8 bg-white border border-gray-200 rounded-full shadow-md flex items-center justify-center hover:bg-gray-50 hover:scale-110 transition-all duration-200 disabled:opacity-50"
-            disabled={isAnimating}
-          >
-            <ChevronRight className="w-4 h-4 text-gray-600" />
-          </button>
-
-          {/* Horizontal Slider */}
-          <div 
-            ref={sliderRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth pb-4"
-            style={{ 
-              scrollBehavior: 'smooth',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none'
-            }}
-          >
-            {/* Double the products for infinite scroll effect */}
-            {[...newArrivals, ...newArrivals].map((product, index) => (
-              <div
-                key={`${product.id}-${index}`}
-                className="flex-shrink-0 w-64 bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-              >
-                {/* Product Image */}
-                <div className="relative aspect-square overflow-hidden">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                  
-                  {/* Discount Badge */}
-                  {product.discount && (
-                    <div className="absolute top-3 left-3">
-                      <span 
-                        className="px-3 py-1 text-xs font-poppins font-bold text-white rounded"
-                        style={{ backgroundColor: fabuniqoGold }}
-                      >
-                        -{product.discount}%
+         
+              </div>
+              
+              {/* Product Info */}
+              <div className="p-4">
+                <div className="mb-1">
+                  <span className="font-Noto text-xs text-gray-500 uppercase">
+                    {product.category}
+                  </span>
+                </div>
+                
+                <h3 className="font-Noto text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2 group-hover:text-[rgb(209,167,67)] transition-colors">
+                  {product.title}
+                </h3>
+                
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-Noto text-lg font-bold text-[#0e0e0e]">
+                      {formatPrice(product.price)}
+                    </span>
+                    {product.discount && (
+                      <span className="font-Noto text-xs text-gray-400 line-through">
+                        ${(product.price / (1 - product.discount/100)).toFixed(2)}
                       </span>
-                    </div>
-                  )}
+                    )}
+                  </div>
                   
-                  {/* Quick Actions */}
-                  <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 hover:opacity-100 transition-opacity duration-300">
-                    <button className="p-2 bg-white rounded-full hover:bg-[rgb(209,167,67)] hover:text-white transition-colors">
-                      <Heart className="w-3 h-3" />
-                    </button>
-                    <button className="p-2 bg-white rounded-full hover:bg-[rgb(209,167,67)] hover:text-white transition-colors">
-                      <Eye className="w-3 h-3" />
-                    </button>
+                  <div className="flex items-center gap-1">
+                    <Star className="w-3 h-3 text-yellow-400 fill-current" />
+                    <span className="font-Noto text-xs font-medium">{product.rating}</span>
                   </div>
                 </div>
                 
-                {/* Product Info */}
-                <div className="p-4">
-                  <div className="mb-2">
-                    <span className="font-poppins text-xs text-gray-500 uppercase">
-                      {product.category}
-                    </span>
-                  </div>
-                  
-                  <h3 className="font-poppins text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2">
-                    {product.title}
-                  </h3>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="font-playfair text-lg font-bold text-[#0e0e0e]">
-                        {formatPrice(product.price)}
-                      </span>
-                    </div>
-                    
-                    <div className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-yellow-400 fill-current" />
-                      <span className="font-poppins text-xs font-medium">{product.rating}</span>
-                    </div>
-                  </div>
-                  
-                  {/* Add to Cart Button */}
-                  <button 
-                    className="w-full mt-3 py-2 text-xs font-poppins font-semibold rounded bg-[rgb(209,167,67)] text-white hover:bg-[rgb(209,167,67)]/90 transition-colors duration-200 flex items-center justify-center gap-2"
-                    style={{ backgroundColor: fabuniqoGold }}
-                  >
-                    <ShoppingBag className="w-3 h-3" />
-                    Add to Cart
-                  </button>
-                </div>
+                {/* Add to Cart Button */}
+                <button 
+                  className="w-full py-2 text-xs font-Noto font-semibold rounded bg-gray-100 text-gray-800 hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-[rgb(209,167,67)] group-hover:text-white"
+                >
+                  <ShoppingBag className="w-3 h-3" />
+                  Add to Cart
+                </button>
               </div>
-            ))}
-          </div>
-
-   
+            </div>
+          ))}
         </div>
 
-  
-      
+        {/* View All Button */}
+        <div className="text-center mt-12">
+          <button 
+            className="px-8 py-3 font-Noto font-medium text-sm border border-[rgb(209,167,67)] text-[rgb(209,167,67)] hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-300 rounded-full"
+            style={{ borderColor: fabuniqoGold }}
+          >
+            View All Products
+          </button>
+        </div>
       </div>
-
-      {/* Hide scrollbar CSS */}
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,303 +1,163 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight, FaPlay, FaPause } from 'react-icons/fa';
-import { Play, Pause } from 'lucide-react';
+import { ShoppingBag, ArrowRight, Volume2, VolumeX, Plus } from 'lucide-react';
+
+// Assets
 import video3 from "../../assets/vedio3.mp4";
 import vedio2 from "../../assets/vedio2.mp4";
 import vedio1 from "../../assets/vedio1.mp4";
 import vedio5 from "../../assets/vedio5.mp4";
 import vedio6 from "../../assets/vedio6.mp4";
-import vedio7 from "../../assets/vedio7.mp4";
 
-const FashionVideoGallery = () => {
-  const [activeVideo, setActiveVideo] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+const FashionEcomGallery = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const mainVideoRef = useRef(null);
-  
-  // Your brand colors
-  const fabuniqoGold = "rgb(209,167,67)";
-  const primaryBlack = "#0e0e0e";
-  const lightGold = "rgb(247,224,193)";
 
-  // Videos data - removed duplicates
-  const fashionVideos = [
+  const collections = [
     {
       id: 1,
-      title: "Runway Collection 2024",
-      description: "Experience our latest runway show featuring exclusive designs",
-      category: "Runway",
-      videoUrl: vedio7,
+      title: "The Silk Edit",
+      category: "SS26 Collection",
+      videoUrl: vedio6,
+      product: { name: "Mulberry Silk Scarf", price: "$240", img: "https://images.pexels.com/photos/2120584/pexels-photo-2120584.jpeg" }
     },
     {
       id: 2,
-      title: "Summer Essentials",
-      description: "Lightweight fabrics and vibrant colors for the sunny season",
-      category: "Seasonal",
+      title: "Desert Linen",
+      category: "Summer Essentials",
       videoUrl: vedio2,
+      product: { name: "Oversized Linen Blazer", price: "$480", img: "https://images.pexels.com/photos/3651597/pexels-photo-3651597.jpeg" }
     },
     {
       id: 3,
-      title: "Luxury Fabrics",
-      description: "Premium silk, cashmere, and Italian wool craftsmanship",
-      category: "Materials",
+      title: "Velvet Midnight",
+      category: "Evening Gala",
       videoUrl: vedio1,
+      product: { name: "Tailored Velvet Trousers", price: "$350", img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=200&h=200&auto=format&fit=crop" }
     },
     {
-      id: 4,
-      title: "Elegant Evening Wear",
-      description: "Sophisticated dresses for special occasions",
-      category: "Formal",
-      videoUrl: vedio5,
-    },
-    {
-      id: 5,
-      title: "Street Style",
-      description: "Urban fashion meets contemporary design",
-      category: "Casual",
-      videoUrl: vedio6,
+        id: 4,
+        title: "City Minimalist",
+        category: "Urban Wear",
+        videoUrl: vedio5,
+        product: { name: "Double Breasted Coat", price: "$890", img: "https://images.pexels.com/photos/7494681/pexels-photo-7494681.jpeg" }
     }
   ];
 
-  // Toggle play/pause
-  const toggleVideoPlay = () => {
-    if (mainVideoRef.current) {
-      if (mainVideoRef.current.paused) {
-        mainVideoRef.current.play();
-        setIsPlaying(true);
-      } else {
-        mainVideoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
-  // Toggle mute/unmute
-  const toggleMute = () => {
-    if (mainVideoRef.current) {
-      mainVideoRef.current.muted = !mainVideoRef.current.muted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  // Navigate with animation
-  const navigateVideo = (direction) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setIsPlaying(false);
-    
-    setTimeout(() => {
-      if (direction === 'next') {
-        setActiveVideo((prev) => (prev + 1) % fashionVideos.length);
-      } else {
-        setActiveVideo((prev) => (prev - 1 + fashionVideos.length) % fashionVideos.length);
-      }
-      
-      setTimeout(() => {
-        if (mainVideoRef.current) {
-          mainVideoRef.current.play()
-            .then(() => setIsPlaying(true))
-            .catch(() => setIsPlaying(false));
-        }
-        setIsAnimating(false);
-      }, 300);
-    }, 300);
-  };
-
-  // Auto-play video when changed
+  // Auto-cycle logic
   useEffect(() => {
-    if (mainVideoRef.current) {
-      mainVideoRef.current.play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
-    }
-  }, [activeVideo]);
+    const timer = setInterval(() => {
+      setActiveIdx((prev) => (prev + 1) % collections.length);
+    }, 8000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-[#fafafa] to-white overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-[rgb(209,167,67)] to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-[rgb(209,167,67)] to-transparent rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-[rgb(209,167,67)]/20 mb-6">
-            <div className="w-2 h-2 rounded-full bg-[rgb(209,167,67)] animate-pulse"></div>
-            <span className="font-poppins text-xs md:text-sm font-medium text-[rgb(209,167,67)] tracking-wider">
-              FASHION IN MOTION
-            </span>
+    <section className="bg-white py-20 px-4 md:px-12 font-sans overflow-hidden">
+      <div className="max-w-[1440px] mx-auto">
+        
+        {/* Header: Clean & Commerce-focused */}
+        <div className="flex justify-between items-end mb-10 border-b border-zinc-100 pb-8">
+          <div>
+            <span className="text-[10px] tracking-[0.3em] font-bold text-zinc-400 uppercase">Shop the Campaign</span>
+            <h2 className="text-4xl md:text-5xl font-light tracking-tighter text-zinc-900 mt-2">
+              Collections <span className="italic font-serif">In Focus</span>
+            </h2>
           </div>
-          
-          <h2 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-semibold text-[#0e0e0e] mb-6">
-            Discover Our{' '}
-            <span style={{ color: fabuniqoGold }}>Collections</span>
-          </h2>
-          
-          <p className="font-poppins text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-            Watch our premium fashion collections come to life. Each video showcases 
-            the craftsmanship and elegance of FABUNIQO designs.
-          </p>
+          <button className="text-sm font-medium border-b-2 border-black pb-1 hover:text-zinc-500 hover:border-zinc-300 transition-all">
+            View All Series
+          </button>
         </div>
 
-        {/* Main Video Display */}
-        <div className="relative mb-12 md:mb-16 container-fluid">
-          <div className={`relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl transition-all duration-500 ${
-            isAnimating ? 'opacity-60 scale-95' : 'opacity-100 scale-100'
-          }`}>
-            {/* Video Player */}
-            <video
-              ref={mainVideoRef}
-              key={fashionVideos[activeVideo].id}
-              className="absolute inset-0 w-full h-full object-cover"
-              loop
-              muted={isMuted}
-              playsInline
-              controls={false}
-              autoPlay
-            >
-              <source src={fashionVideos[activeVideo].videoUrl} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-            
-            {/* Video Info Overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-0">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <button
-                      onClick={toggleVideoPlay}
-                      className="p-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-300 hover:scale-110 group"
-                    >
-                      {isPlaying ? 
-                        <Pause className="w-4 h-4 text-white group-hover:text-[rgb(209,167,67)]" /> : 
-                        <Play className="w-4 h-4 text-white group-hover:text-[rgb(209,167,67)]" />
-                      }
-                    </button>
-                    <button
-                      onClick={toggleMute}
-                      className="px-3 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-sm font-poppins font-medium hover:bg-white/30 transition-colors"
-                    >
-                      {isMuted ? '🔇' : '🔊'}
-                    </button>
-                    <span className="px-3 py-1.5 bg-[rgb(209,167,67)]/20 backdrop-blur-sm rounded-full text-sm font-poppins font-medium">
-                      {fashionVideos[activeVideo].category}
-                    </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* Main Video Section (8 Cols) */}
+          <div className="lg:col-span-8 relative">
+            <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100 rounded-sm">
+              <video
+                ref={mainVideoRef}
+                key={collections[activeIdx].videoUrl}
+                className="w-full h-full object-cover"
+                loop muted={isMuted} playsInline autoPlay
+              >
+                <source src={collections[activeIdx].videoUrl} type="video/mp4" />
+              </video>
+
+              {/* Mute Toggle */}
+              <button 
+                onClick={() => setIsMuted(!isMuted)}
+                className="absolute top-6 right-6 p-3 bg-white/10 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-black transition-all"
+              >
+                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+              </button>
+
+              {/* Shoppable Floating Card */}
+              <div className="absolute bottom-8 left-8 right-8 flex justify-between items-end">
+                <div className="bg-white p-4 shadow-2xl rounded-sm flex items-center gap-4 max-w-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <img src={collections[activeIdx].product.img} alt="Product" className="w-16 h-20 object-cover bg-zinc-100" />
+                    <div className="flex-1">
+                        <p className="text-[10px] text-zinc-400 font-bold uppercase">{collections[activeIdx].category}</p>
+                        <h4 className="text-xs font-bold text-zinc-900 uppercase mt-1">{collections[activeIdx].product.name}</h4>
+                        <p className="text-sm text-zinc-600 mt-1">{collections[activeIdx].product.price}</p>
+                        <button className="flex items-center gap-1 text-[10px] font-bold text-[rgb(209,167,67)] mt-2 uppercase group">
+                            Add to bag <Plus size={12} className="group-hover:rotate-90 transition-transform" />
+                        </button>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Product Nav Section (4 Cols) */}
+          <div className="lg:col-span-4 flex flex-col justify-between">
+            <div className="space-y-4">
+              {collections.map((item, index) => (
+                <div 
+                  key={item.id}
+                  onMouseEnter={() => setActiveIdx(index)}
+                  className={`relative p-6 cursor-pointer transition-all duration-500 border rounded-sm ${
+                    activeIdx === index 
+                    ? 'border-black bg-zinc-50' 
+                    : 'border-zinc-100 hover:border-zinc-300'
+                  }`}
+                >
+                  <div className="flex justify-between items-center">
+                    <div>
+                        <span className={`text-[10px] font-bold tracking-widest ${activeIdx === index ? 'text-[rgb(209,167,67)]' : 'text-zinc-300'}`}>
+                            0{index + 1}
+                        </span>
+                        <h3 className="text-sm font-bold uppercase tracking-tight mt-1">{item.title}</h3>
+                        <p className="text-xs text-zinc-500 mt-1">{item.category}</p>
+                    </div>
+                    {activeIdx === index && <ArrowRight size={18} className="text-black" />}
                   </div>
                   
-                  <div>
-                    <h3 className="font-playfair text-2xl md:text-3xl font-semibold mb-2">
-                      {fashionVideos[activeVideo].title}
-                    </h3>
-                    <p className="font-poppins text-base md:text-lg text-gray-200 max-w-2xl">
-                      {fashionVideos[activeVideo].description}
-                    </p>
-                  </div>
+                  {/* Progress bar inside the list item */}
+                  {activeIdx === index && (
+                    <div className="absolute bottom-0 left-0 h-[3px] bg-black w-full origin-left animate-[progress_8s_linear]" />
+                  )}
                 </div>
-
-              </div>
+              ))}
             </div>
 
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => navigateVideo('prev')}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group disabled:opacity-50"
-              disabled={isAnimating}
-            >
-              <FaChevronLeft className="text-white text-lg group-hover:text-[rgb(209,167,67)] transition-colors" />
-            </button>
-            
-            <button
-              onClick={() => navigateVideo('next')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/20 transition-all duration-300 group disabled:opacity-50"
-              disabled={isAnimating}
-            >
-              <FaChevronRight className="text-white text-lg group-hover:text-[rgb(209,167,67)] transition-colors" />
-            </button>
+            <div className="mt-8 p-8 bg-zinc-900 text-white rounded-sm">
+                <ShoppingBag className="mb-4 text-[rgb(209,167,67)]" size={32} />
+                <h4 className="text-lg font-light italic font-serif">Luxury delivered to your doorstep.</h4>
+                <p className="text-[10px] text-zinc-400 uppercase tracking-widest mt-2">Complimentary shipping on all orders over $500.</p>
+            </div>
           </div>
-        </div>
 
-        {/* Video Thumbnails Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 mb-12">
-          {fashionVideos.map((video, index) => (
-            <div
-              key={video.id}
-              className={`relative rounded-xl md:rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 group ${
-                index === activeVideo 
-                  ? 'ring-2 ring-[rgb(209,167,67)] shadow-lg scale-[1.02]' 
-                  : 'ring-1 ring-gray-200 hover:ring-[rgb(209,167,67)]/50 hover:shadow-md'
-              }`}
-              onClick={() => {
-                if (index !== activeVideo && !isAnimating) {
-                  setIsAnimating(true);
-                  setIsPlaying(false);
-                  setTimeout(() => {
-                    setActiveVideo(index);
-                    setTimeout(() => {
-                      if (mainVideoRef.current) {
-                        mainVideoRef.current.play()
-                          .then(() => setIsPlaying(true))
-                          .catch(() => setIsPlaying(false));
-                      }
-                      setIsAnimating(false);
-                    }, 300);
-                  }, 300);
-                }
-              }}
-            >
-              {/* Video Thumbnail */}
-              <div className="relative aspect-square">
-                <video
-                  className="absolute inset-0 w-full h-full object-cover"
-                  muted
-                  playsInline
-                  loop
-                  autoPlay
-                  controls={false}
-                >
-                  <source src={video.videoUrl} type="video/mp4" />
-                </video>
-                
-                {/* Overlay */}
-                <div className={`absolute inset-0 transition-colors duration-300 ${
-                  index === activeVideo 
-                    ? 'bg-black/20' 
-                    : 'bg-black/30 group-hover:bg-black/20'
-                }`}></div>
-                
-                {/* Active Indicator */}
-                {index === activeVideo && (
-                  <div className="absolute top-3 right-3 w-6 h-6 bg-[rgb(209,167,67)] rounded-full flex items-center justify-center">
-                    <Play className="w-3 h-3 text-white" />
-                  </div>
-                )}
-              </div>
-              
-              {/* Video Info */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4 bg-gradient-to-t from-black/80 via-black/50 to-transparent">
-                <h4 className="font-poppins text-xs md:text-sm font-semibold text-white truncate">
-                  {video.title}
-                </h4>
-                <p className="font-poppins text-xs text-gray-300 truncate mt-1">
-                  {video.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Bottom Controls */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-        
         </div>
       </div>
+      
+      <style>{`
+        @keyframes progress {
+          0% { transform: scaleX(0); }
+          100% { transform: scaleX(1); }
+        }
+      `}</style>
     </section>
   );
 };
 
-export default FashionVideoGallery;
+export default FashionEcomGallery;
