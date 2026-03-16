@@ -30,14 +30,14 @@ const BestSellers = () => {
           <div className="mb-6 md:mb-0 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[rgb(209,167,67)]/10 to-transparent rounded-full border border-[rgb(209,167,67)]/20 mb-4">
               <TrendingUp className="w-4 h-4 text-[rgb(209,167,67)]" />
-              <span className="font-Noto text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
+              <span className="font-main text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
                 BEST SELLERS
               </span>
             </div>
-            <h2 className="font-playfair text-2xl md:text-3xl font-semibold text-[#0e0e0e] mb-3">
-              Most Loved This <span style={{ color: 'rgb(209,167,67)' }}>Season</span>
+            <h2 className="text-2xl md:text-3xl font-light text-[#0e0e0e] mb-3">
+              Most Loved This <span style={{ color: '#D1A743' ,fontWeight:"500px"}}>Season</span>
             </h2>
-            <p className="font-Noto text-sm text-gray-600">
+            <p className="font-main text-sm text-gray-600">
               Products everyone is talking about
             </p>
           </div>
@@ -48,7 +48,7 @@ const BestSellers = () => {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-3 py-1.5 rounded-full font-Noto text-xs font-medium transition-all duration-200 ${activeFilter === filter
+                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-200 ${activeFilter === filter
                     ? 'bg-[rgb(209,167,67)] text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
                   }`}
@@ -77,7 +77,7 @@ const BestSellers = () => {
                 {/* Badges */}
                 <div className="absolute top-3 left-3">
                   <span
-                    className="px-3 py-1 text-xs font-Noto font-bold text-white rounded"
+                    className="px-3 py-1 text-xs font-main font-bold text-white rounded"
                     style={{ backgroundColor: 'rgb(209,167,67)' }}
                   >
                     -{product.discount}%
@@ -86,7 +86,7 @@ const BestSellers = () => {
 
                 {/* Sold Badge */}
                 <div className="absolute top-3 right-3">
-                  <span className="px-3 py-1 bg-black/80 text-white text-xs font-Noto rounded-full backdrop-blur-sm">
+                  <span className="px-3 py-1 bg-black/80 text-white text-xs rounded-full backdrop-blur-sm">
                     🔥 {product.sold} sold
                   </span>
                 </div>
@@ -120,18 +120,18 @@ const BestSellers = () => {
               {/* Product Info */}
               <div className="p-4">
                 <div className="mb-1">
-                  <span className="font-Noto text-xs text-gray-500 uppercase">
+                  <span className="text-xs text-gray-500 uppercase">
                     {product.category}
                   </span>
                 </div>
 
-                <h3 className="font-Noto text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2 group-hover:text-[rgb(209,167,67)] transition-colors">
+                <h3 className="text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2 group-hover:text-[rgb(209,167,67)] transition-colors">
                   {product.name}
                 </h3>
 
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-Noto text-lg font-bold text-[#0e0e0e]">
+                    <span className="text-lg font-bold text-[#0e0e0e]">
                       {formatPrice(product.price)}
                     </span>
                     <span className="font-Noto text-xs text-gray-400 line-through">
@@ -147,7 +147,7 @@ const BestSellers = () => {
 
                 {/* Add to Cart Button */}
                 <button
-                  className="w-full py-2 text-xs font-Noto font-semibold rounded bg-gray-100 text-gray-800 hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-[rgb(209,167,67)] group-hover:text-white"
+                  className="w-full py-2 text-xs font-semibold rounded bg-gray-100 text-gray-800 hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-[rgb(209,167,67)] group-hover:text-white"
                 >
                   <ShoppingBag className="w-3 h-3" />
                   Add to Cart
@@ -160,7 +160,7 @@ const BestSellers = () => {
         {/* View All Button - Matching NewArrivals Style */}
         <div className="text-center mt-12">
           <button
-            className="relative px-8 py-3 font-Noto font-bold text-sm border border-[#D1A743] text-[#D1A743] group overflow-hidden transition-all duration-500 rounded-full hover:shadow-[0_10px_20px_rgba(209,167,67,0.2)] active:scale-95"
+            className="relative px-8 py-3 font-bold text-sm border border-[#D1A743] text-[#D1A743] group overflow-hidden transition-all duration-500 rounded-full hover:shadow-[0_10px_20px_rgba(209,167,67,0.2)] active:scale-95"
           >
             {/* Text Layer */}
             <span className="relative z-10 group-hover:text-white transition-colors duration-300 uppercase tracking-widest">

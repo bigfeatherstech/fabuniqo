@@ -61,11 +61,11 @@ const BrandArchiveTimeline = () => {
         
         {/* Header */}
         <div className="mb-16 text-center md:text-left">
-          <span className="text-[rgb(209,167,67)] tracking-[0.5em] text-[10px] font-bold uppercase block mb-4">
+          <span className="text-[rgb(209,167,67)] tracking-[0.2em] text-[14px] font-bold uppercase block mb-4">
             Legacy & Evolution
           </span>
           <h2 className="text-5xl md:text-7xl font-light text-zinc-900 tracking-tighter">
-            The <span className="italic font-serif">Archive</span>
+            The <span className="italic font-light">Archive</span>
           </h2>
         </div>
 
@@ -97,7 +97,7 @@ const BrandArchiveTimeline = () => {
           {/* Text Content (6 Columns) */}
           <div className="lg:col-span-6 flex flex-col justify-center space-y-8">
             <div className="space-y-4">
-              <h3 className="text-[rgb(209,167,67)] font-serif italic text-3xl">
+              <h3 className="text-[rgb(209,167,67)]  text-3xl">
                 {archiveData[activeYear].collection}
               </h3>
               <p className="text-zinc-600 text-lg leading-relaxed font-light max-w-lg transition-opacity duration-500">

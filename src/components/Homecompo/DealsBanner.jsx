@@ -165,10 +165,10 @@ const DealsBanner = () => {
                   <Zap className="w-7 h-7 text-white" />
                 </div>
                 <div>
-                  <span className="font-poppins text-xs font-bold text-[rgb(209,167,67)] uppercase tracking-[0.4em]">
+                  <span className="font-main text-xs font-bold text-[rgb(209,167,67)] uppercase tracking-[0.4em]">
                     Instant Access
                   </span>
-                  <h3 className="font-playfair text-4xl font-bold text-gray-900 mt-1">
+                  <h3 className="font-main text-4xl font-bold text-gray-900 mt-1">
                     Flash Archive
                   </h3>
                 </div>
@@ -178,7 +178,7 @@ const DealsBanner = () => {
               <div className="mb-10">
                 <div className="flex items-center gap-2 mb-6">
                   <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
-                  <span className="font-poppins text-xs font-semibold text-gray-500 uppercase tracking-widest">
+                  <span className="font-main text-xs font-semibold text-gray-500 uppercase tracking-widest">
                     Offer Expiring
                   </span>
                 </div>
@@ -186,7 +186,7 @@ const DealsBanner = () => {
                   {Object.entries(timeLeft).map(([unit, value]) => (
                     <div key={unit} className="text-center group">
                       <div className="w-20 h-20 bg-gray-900 rounded-2xl flex flex-col items-center justify-center shadow-2xl group-hover:bg-[rgb(209,167,67)] transition-colors duration-500">
-                        <span className="font-playfair text-3xl font-bold text-white">
+                        <span className="font-main text-3xl font-bold text-white">
                           {value.toString().padStart(2, '0')}
                         </span>
                       </div>
@@ -203,7 +203,7 @@ const DealsBanner = () => {
                 // Prevent layout shift
                 style={{ transform: 'translateZ(0)' }}
               >
-                <span className="relative z-10 font-poppins font-bold text-xs uppercase tracking-widest flex items-center gap-3">
+                <span className="relative z-10 font-main font-bold text-xs uppercase tracking-widest flex items-center gap-3">
                   <Tag className="w-4 h-4 text-[rgb(209,167,67)] group-hover:text-white transition-colors" />
                   Explore The Collection
                 </span>
@@ -214,7 +214,7 @@ const DealsBanner = () => {
             {/* Right: Deal Items List */}
             <div className="p-10 md:p-16 bg-white/30">
               <div className="flex justify-between items-center mb-10">
-                <h4 className="font-poppins text-sm font-bold text-gray-400 uppercase tracking-[0.3em]">
+                <h4 className="font-main text-sm font-bold text-gray-400 uppercase tracking-[0.3em]">
                   Curated Selections
                 </h4>
                 <div className="px-3 py-1 bg-green-50 text-green-600 rounded-full text-[10px] font-bold uppercase tracking-widest">
@@ -230,15 +230,15 @@ const DealsBanner = () => {
                     style={{ transform: 'translateZ(0)' }}
                   >
                     <div className="space-y-1">
-                      <h5 className="font-poppins font-semibold text-gray-900 group-hover:text-[rgb(209,167,67)] transition-colors">
+                      <h5 className="font-main font-semibold text-gray-900 group-hover:text-[rgb(209,167,67)] transition-colors">
                         {deal.name}
                       </h5>
                       <div className="flex items-center gap-3">
-                        <span className="font-poppins text-[11px] font-black text-[rgb(209,167,67)] uppercase tracking-tighter">
+                        <span className="font-main text-[11px] font-black text-[rgb(209,167,67)] uppercase tracking-tighter">
                           {deal.discount}
                         </span>
                         <div className="w-1 h-1 rounded-full bg-gray-200"></div>
-                        <span className="font-serif italic text-sm text-gray-500">
+                        <span className="font-main  text-sm text-gray-500">
                           Starting at {deal.price}
                         </span>
                       </div>

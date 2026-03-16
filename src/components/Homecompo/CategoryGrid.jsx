@@ -34,8 +34,8 @@ const CategoryGrid = () => {
         
         {/* Header */}
         <div className="mb-16 text-center">
-          <span className="text-[rgb(209,167,67)] text-[10px] tracking-[0.6em] uppercase font-bold block mb-3">Explore Collections</span>
-          <h2 className="font-playfair text-5xl font-bold text-gray-900 tracking-tight">The Archive</h2>
+          <span className="text-[rgb(209,167,67)] text-[14px] tracking-[0.2em] uppercase font-bold block mb-3">Explore Collections</span>
+          <h2 className="font-light text-5xl font- text-gray-900 tracking-tight">The Archive</h2>
         </div>
 
         {/* Full-Space Grid */}
@@ -62,7 +62,7 @@ const CategoryGrid = () => {
 
                 {/* Title Section */}
                 <div className="px-1 overflow-hidden">
-                  <h3 className="font-poppins text-xs font-bold text-gray-800 tracking-[0.2em] uppercase transition-all duration-500 group-hover:text-[rgb(209,167,67)] group-hover:translate-x-1">
+                  <h3 className="font-main text-xs font-bold text-gray-800 tracking-[0.2em] uppercase transition-all duration-500 group-hover:text-[rgb(209,167,67)] group-hover:translate-x-1">
                     {category.name}
                   </h3>
                   <div className="h-[2px] w-8 bg-[rgb(209,167,67)] mt-2 transition-all duration-500 group-hover:w-full" />
@@ -101,7 +101,7 @@ const CategoryGrid = () => {
         key={i} 
         className="flex flex-col items-center text-center sm:text-left sm:items-start"
       >
-        <span className="font-playfair text-2.5xl sm:text-3xl md:text-3xl lg:text-3.5xl font-bold text-gray-900 mb-1 sm:mb-2">
+        <span className="font-main text-2.5xl sm:text-3xl md:text-3xl lg:text-3.5xl font-bold text-gray-900 mb-1 sm:mb-2">
           {s.v}
         </span>
         <span className="text-[10px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-tight font-bold text-gray-400 uppercase tracking-wider sm:tracking-widest px-2 sm:px-0">

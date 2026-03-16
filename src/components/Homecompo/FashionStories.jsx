@@ -131,8 +131,8 @@ const EliteBanner = () => {
             </span>
           </div>
 
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 md:mb-8 leading-[1.1]">
-            Curated <br /> <span className="italic" style={{ color: fabniquoGold }}>Excellence</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-6 md:mb-8 leading-[1.1]">
+            Curated <br /> <span className="" style={{ color: "#D1A743" }}>Excellence</span>
           </h2>
 
           <div className="flex flex-col md:flex-row items-center justify-center lg:justify-start gap-4 md:gap-6 lg:gap-12">

@@ -35,7 +35,7 @@ const VIPMembershipSection = () => {
 
             <h2 className="text-4xl md:text-6xl font-light text-white tracking-tighter leading-tight">
               Join the <br />
-              <span className="italic font-serif text-[rgb(209,167,67)]">Inner Circle</span>
+              <span className=" text-[rgb(209,167,67)]">Inner Circle</span>
             </h2>
 
             <p className="text-zinc-400 text-lg font-light leading-relaxed max-w-md">

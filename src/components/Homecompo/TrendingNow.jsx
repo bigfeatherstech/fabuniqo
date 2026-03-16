@@ -105,10 +105,10 @@ const TrendingNow = () => {
             <TrendingUp className="w-5 h-5 sm:w-6 sm:h-6 text-[rgb(209,167,67)]" />
           </div>
           <div>
-            <h2 className="font-playfair text-xl sm:text-2xl font-semibold text-gray-900">
+            <h2 className="font-main text-xl sm:text-2xl font-light text-gray-900">
               Trending <span style={{ color: 'rgb(209,167,67)' }}>Now</span>
             </h2>
-            <p className="font-poppins text-gray-600 text-xs sm:text-sm">
+            <p className="font-main text-gray-600 text-xs sm:text-sm">
               Explore what's hot in fashion right now
             </p>
           </div>
@@ -127,10 +127,10 @@ const TrendingNow = () => {
                     <Hash className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[rgb(209,167,67)]" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="font-poppins font-semibold text-gray-900 text-sm sm:text-base group-hover:text-[rgb(209,167,67)] truncate">
+                    <h3 className="font-semibold text-gray-900 text-sm sm:text-base group-hover:text-[rgb(209,167,67)] truncate">
                       {trend.tag}
                     </h3>
-                    <p className="font-poppins text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
+                    <p className="text-xs sm:text-sm text-gray-500 mt-0.5 sm:mt-1">
                       {trend.items} items
                     </p>
                   </div>

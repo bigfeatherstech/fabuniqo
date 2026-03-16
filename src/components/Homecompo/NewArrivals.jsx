@@ -3,7 +3,7 @@ import { Heart, ShoppingBag, Eye, Star, Zap } from 'lucide-react';
 
 const NewArrivals = () => {
   // Your brand colors
-  const fabuniqoGold = "rgb(209,167,67)";
+  const fabuniqoGold = "#D1A743";
 
   // New Arrivals Products
   const newArrivals = [
@@ -33,16 +33,16 @@ const NewArrivals = () => {
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[rgb(209,167,67)]/10 to-transparent rounded-full border border-[rgb(209,167,67)]/20 mb-4">
             <Zap className="w-4 h-4 text-[rgb(209,167,67)] animate-pulse" />
-            <span className="font-Noto text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
+            <span className="font-main text-xs font-medium text-[rgb(209,167,67)] tracking-wider">
               NEW ARRIVALS
             </span>
           </div>
 
-          <h2 className="font-playfair text-2xl md:text-3xl font-semibold text-[#0e0e0e] mb-3">
-            Latest <span style={{ color: fabuniqoGold }}>Collections</span>
+          <h2 className="text-2xl md:text-3xl font-light text-[#0e0e0e] mb-3">
+            Latest <span style={{ color: "#D1A743" }}>Collections</span>
           </h2>
 
-          <p className="font-Noto text-sm text-gray-600">
+          <p className="font-main text-sm text-gray-600">
             Fresh styles just added to our collection
           </p>
         </div>
@@ -66,7 +66,7 @@ const NewArrivals = () => {
                 {product.discount && (
                   <div className="absolute top-3 left-3">
                     <span
-                      className="px-3 py-1 text-xs font-Noto font-bold text-white rounded"
+                      className="px-3 py-1 text-xs  font-bold text-white rounded"
                       style={{ backgroundColor: fabuniqoGold }}
                     >
                       -{product.discount}%
@@ -96,18 +96,18 @@ const NewArrivals = () => {
               {/* Product Info */}
               <div className="p-4">
                 <div className="mb-1">
-                  <span className="font-Noto text-xs text-gray-500 uppercase">
+                  <span className="text-xs text-gray-500 uppercase">
                     {product.category}
                   </span>
                 </div>
 
-                <h3 className="font-Noto text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2 group-hover:text-[rgb(209,167,67)] transition-colors">
+                <h3 className="text-sm font-semibold text-[#0e0e0e] line-clamp-1 mb-2 group-hover:text-[rgb(209,167,67)] transition-colors">
                   {product.title}
                 </h3>
 
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="font-Noto text-lg font-bold text-[#0e0e0e]">
+                    <span className="text-lg font-bold text-[#0e0e0e]">
                       {formatPrice(product.price)}
                     </span>
                     {product.discount && (
@@ -125,7 +125,7 @@ const NewArrivals = () => {
 
                 {/* Add to Cart Button */}
                 <button
-                  className="w-full py-2 text-xs font-Noto font-semibold rounded bg-gray-100 text-gray-800 hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-[rgb(209,167,67)] group-hover:text-white"
+                  className="w-full py-2 text-xs font-semibold rounded bg-gray-100 text-gray-800 hover:bg-[rgb(209,167,67)] hover:text-white transition-all duration-200 flex items-center justify-center gap-2 group-hover:bg-[rgb(209,167,67)] group-hover:text-white"
                 >
                   <ShoppingBag className="w-3 h-3" />
                   Add to Cart
@@ -138,7 +138,7 @@ const NewArrivals = () => {
         {/* View All Button */}
         <div className="text-center mt-12">
           <button
-            className="relative px-8 py-3 font-Noto font-bold text-sm border overflow-hidden group transition-all duration-500 rounded-full active:scale-95 hover:shadow-[0_10px_20px_rgba(209,167,67,0.2)]"
+            className="relative px-8 py-3 font-bold text-sm border overflow-hidden group transition-all duration-500 rounded-full active:scale-95 hover:shadow-[0_10px_20px_rgba(209,167,67,0.2)]"
             style={{
               borderColor: 'rgb(209,167,67)', // Using your fabuniqoGold color
               color: 'rgb(209,167,67)'

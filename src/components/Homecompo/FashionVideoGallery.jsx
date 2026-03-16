@@ -142,7 +142,7 @@ const FashionEcomGallery = () => {
 
             <div className="mt-8 p-8 bg-zinc-900 text-white rounded-sm">
                 <ShoppingBag className="mb-4 text-[rgb(209,167,67)]" size={32} />
-                <h4 className="text-lg font-light italic font-serif">Luxury delivered to your doorstep.</h4>
+                <h4 className="text-lg font-light">Luxury delivered to your doorstep.</h4>
                 <p className="text-[10px] text-zinc-400 uppercase tracking-widest mt-2">Complimentary shipping on all orders over $500.</p>
             </div>
           </div>

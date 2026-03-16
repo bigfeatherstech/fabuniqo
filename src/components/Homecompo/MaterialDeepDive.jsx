@@ -32,7 +32,7 @@ const MaterialDeepDive = () => {
             <span className="text-[10px] tracking-[0.5em] font-bold text-zinc-400 uppercase">Quality Inspection</span>
           </div>
           <h2 className="text-5xl md:text-7xl font-extralight tracking-tighter text-zinc-900 uppercase">
-            Senses <span className="italic font-serif text-[rgb(209,167,67)]">&</span> Fabric
+            Senses <span className="text-[rgb(209,167,67)]">&</span> Fabric
           </h2>
         </div>
 
